@@ -1,7 +1,7 @@
 {
   "name": "Taubyte Battlesnake Tournament",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
-  "postCreateCommand": ". post/init.sh",
+  "postCreateCommand": "bash scripts/ensure-tools.sh",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:1": {
       "version": "latest",

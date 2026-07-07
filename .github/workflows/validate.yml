@@ -21,7 +21,8 @@ jobs:
         run: |
           test -f snake.go
           test -f post/tau
-          test -f post/init.sh
+          test -f scripts/ensure-tools.sh
+          test -f scripts/lib/install-tooling.sh
           test -f scripts/init.sh
           test -f scripts/test.sh
           test -f scripts/deploy.sh

@@ -259,11 +259,12 @@ dream_resolve_universe() {
 }
 
 dream_install_npm() {
-  command -v dream >/dev/null 2>&1 && return 0
-  command -v npm >/dev/null 2>&1 || die "npm missing — rebuild Codespace or run: bash post/init.sh"
-  log "Installing @taubyte/dream@latest from npm..."
-  sudo npm install -g @taubyte/dream@latest
-  command -v dream >/dev/null 2>&1 || die "dream install failed — run: bash post/init.sh"
+  if command -v dream >/dev/null 2>&1 && dream_cli_has_start; then
+    return 0
+  fi
+  local root
+  root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+  bash "${root}/scripts/lib/install-tooling.sh" || die "Could not install dream — run: bash scripts/ensure-tools.sh"
 }
 
 docker_wait() {

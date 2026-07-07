@@ -78,6 +78,7 @@ bash scripts/deploy.sh    # deploy + live test
 
 | Command | What it does |
 | --- | --- |
+| `bash scripts/ensure-tools.sh` | Fix/install tau + dream + npm (run this first if anything missing) |
 | `bash scripts/doctor.sh` | Preflight — checks tau, dream, docker, gh |
 | `bash scripts/dream-foreground.sh` | Optional — run `dream start` in foreground |
 | `bash scripts/dream-status.sh` | Check Dream universe status |
@@ -98,8 +99,8 @@ bash scripts/deploy.sh    # deploy + live test
 | Dream build fails | Check output from `test.sh`, fix `snake.go`, retry |
 | Deploy fails | `bash scripts/logs.sh`, wait ~30s, retry `deploy.sh` |
 | `/move` returns empty | Wait ~30s for deploy to settle, then retry `deploy.sh` |
-| Dream stuck | `bash scripts/dream-status.sh` or `bash scripts/dream-foreground.sh` in a second terminal |
-| Recovery mode / stuck on post-create | Rebuild Codespace. Post-create installs tau + `npm i -g @taubyte/dream@latest` |
+| tau / dream / npm not found | `bash scripts/ensure-tools.sh` |
+| Anything broken before init | `bash scripts/ensure-tools.sh && bash scripts/doctor.sh` |
 
 ---
 
